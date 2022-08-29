@@ -4,7 +4,8 @@
   "description": "Generate a file",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+	"ts": "tsc"
   },
   "repository": {
     "type": "git",
