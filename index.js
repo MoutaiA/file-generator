@@ -15,42 +15,12 @@ function writeFile(data, options) {
 		result += '\n';
 	}
 
-	const date = new Date();
-	const timestamp = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
-	const path = `data/OUT_${timestamp}.csv`;
-	fs.appendFile(path, result, (err) => {
-		if (err) throw err;
-		console.log('OK');
-	});
-}
-
-const data = [
-	{
-		name: 'Zoldyck',
-		firstname: 'Kirua',
-		nenType: 'Transmutation'
-	},
-	{
-		name: 'Freecs',
-		firstname: 'Gon',
-		nenType: 'Enhancer'
-	},
-	{
-		name: 'Kuruta',
-		firstname: 'Kurapika',
-		nenType: 'Conjurer'
-	},
-	{
-		name: 'Paradinight',
-		firstname: 'Leorio',
-		nenType: 'Emitter'
+	try {
+		fs.appendFileSync(options.path, result);
+	} catch (e) {
+		console.error(e);
 	}
-];
-const options = {
-	separator: '|'
-};
-
-writeFile(data, options);
+}
 
 module.exports = {
 	writeFile
