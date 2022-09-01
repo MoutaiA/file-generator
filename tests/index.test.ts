@@ -1,7 +1,7 @@
-const fs = require('fs');
 const { writeFile } = require('../index');
 
 test('Test', () => {
+	const fs = require('fs');
 	const data = [
 		{
 			name: 'Zoldyck',
@@ -21,15 +21,21 @@ test('Test', () => {
 	];
 	const date = new Date();
 	const timestamp = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
-	const path = `data/TEST_${timestamp}.csv`;
+	const path = `data/`;
+	const filename: string = `TEST_${timestamp}.csv`;
 	const options = {
 		separator: ';',
-		path
+		path,
+		filename
 	};
 	const expected = 'Zoldyck;Kirua;Transmutation;\nFreecs;Gon;Enhancer;\nKuruta;Kurapika;Conjurer';
 
 	writeFile(data, options);
-	const file = fs.readFileSync(path, { encoding: 'utf-8' });
+	const filepath: string = `${path}/${filename}`;
+	const file = fs.readFileSync(filepath, { encoding: 'utf-8' });
 
 	expect(file).toMatch(expected)
 });
+
+
+export { }

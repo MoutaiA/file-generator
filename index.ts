@@ -1,11 +1,11 @@
-const fs = require('fs');
+import fs, { WriteFileOptions } from 'fs';
 
-function writeFile(data, options) {
+function writeFile(data: any, options: any) {
 	if (!data) {
 		throw new Error('No data provided');
 	}
 
-	let result = '';
+	let result: string = '';
 	const separator = options && options.separator ? options.separator : ';';
 
 	for (const element of data) {
@@ -16,12 +16,14 @@ function writeFile(data, options) {
 	}
 
 	try {
-		fs.appendFileSync(options.path, result);
+		const { path, filename } = options;
+		const filepath: string = `${path}/${filename}`
+		fs.appendFileSync(filepath, result);
 	} catch (e) {
 		console.error(e);
 	}
 }
 
-module.exports = {
+export {
 	writeFile
-};
+}
