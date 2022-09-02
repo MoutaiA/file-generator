@@ -1,4 +1,4 @@
-import fs, { WriteFileOptions } from 'fs';
+import * as fs from 'fs-extra';
 import { Options } from './src/Options';
 
 function writeFileSync(data: any, options: Options): void {
@@ -18,6 +18,7 @@ function writeFileSync(data: any, options: Options): void {
 
 	try {
 		const { path, filename } = options;
+		fs.ensureDirSync(path);
 		const filepath: string = `${path}/${filename}`
 		fs.appendFileSync(filepath, result);
 	} catch (e) {
