@@ -38,4 +38,42 @@ test('Should create a CSV file', () => {
 	expect(file).toMatch(expected)
 });
 
+test('Should add a header', () => {
+	const data = [
+		['name', 'firstname', 'nenType'],
+		{
+			name: 'Isaac',
+			firstname: 'Netero',
+			nenTyle: 'Enhancer'
+		},
+		{
+			name: 'Lucifer',
+			firstname: 'Chrollo',
+			nenType: 'Specialization'
+		},
+		{
+			name: 'Morow',
+			firstname: 'Hisoka',
+			nenType: 'Transmuter'
+		}
+	];
+	const date = new Date();
+	const timestamp = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
+	const path = `dist/`;
+	const filename: string = `TEST2_${timestamp}.csv`;
+	const options: Options = {
+		path,
+		filename,
+		headers: true,
+		separator: ','
+	};
+	const expected = 'name,firstname,nenType,\nIsaac,Netero,Enhancer,\nLucifer,Chrollo,Specialization,\nMorow,Hisoka,Transmuter,';
+
+	writeFileSync(data, options);
+	const filepath: string = `${path}/${filename}`;
+	const file = fs.readFileSync(filepath, { encoding: 'utf-8' });
+
+	expect(file).toMatch(expected)
+});
+
 export { }

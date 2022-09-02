@@ -7,6 +7,14 @@ function writeFileSync(data: any, options: Options): void {
 		let result: string = '';
 		const separator: string = options && options.separator ? options.separator : ';';
 
+		if (options.headers) {
+			for (const fields of data[0]) {
+				result += `${fields}${separator}`;
+			}
+			result += '\n';
+			data.shift();
+		}
+
 		for (const element of data) {
 			for (const value of Object.values(element)) {
 				result += `${value}${separator}`;
