@@ -1,4 +1,5 @@
 const { writeFile } = require('../index');
+import { Options } from '../src/Options';
 
 test('Test', () => {
 	const fs = require('fs');
@@ -23,7 +24,7 @@ test('Test', () => {
 	const timestamp = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
 	const path = `data/`;
 	const filename: string = `TEST_${timestamp}.csv`;
-	const options = {
+	const options: Options = {
 		separator: ';',
 		path,
 		filename

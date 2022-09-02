@@ -1,6 +1,7 @@
 import fs, { WriteFileOptions } from 'fs';
+import { Options } from './src/Options';
 
-function writeFile(data: any, options: any) {
+function writeFile(data: any, options: Options) {
 	if (!data) {
 		throw new Error('No data provided');
 	}
