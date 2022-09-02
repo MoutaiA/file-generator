@@ -1,4 +1,4 @@
-const { writeFile } = require('../index');
+const { writeFileSync } = require('../index');
 import { Options } from '../src/Options';
 
 test('Test', () => {
@@ -22,7 +22,7 @@ test('Test', () => {
 	];
 	const date = new Date();
 	const timestamp = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
-	const path = `data/`;
+	const path = `dist/`;
 	const filename: string = `TEST_${timestamp}.csv`;
 	const options: Options = {
 		separator: ';',
@@ -31,7 +31,7 @@ test('Test', () => {
 	};
 	const expected = 'Zoldyck;Kirua;Transmutation;\nFreecs;Gon;Enhancer;\nKuruta;Kurapika;Conjurer';
 
-	writeFile(data, options);
+	writeFileSync(data, options);
 	const filepath: string = `${path}/${filename}`;
 	const file = fs.readFileSync(filepath, { encoding: 'utf-8' });
 

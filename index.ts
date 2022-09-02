@@ -1,7 +1,7 @@
 import fs, { WriteFileOptions } from 'fs';
 import { Options } from './src/Options';
 
-function writeFile(data: any, options: Options) {
+function writeFileSync(data: any, options: Options): void {
 	if (!data) {
 		throw new Error('No data provided');
 	}
@@ -26,5 +26,5 @@ function writeFile(data: any, options: Options) {
 }
 
 export {
-	writeFile
+	writeFileSync
 }
