@@ -1,8 +1,8 @@
 const { writeFileSync } = require('../index');
+import * as fs from 'fs-extra';
 import { Options } from '../src/Options';
 
-test('Test', () => {
-	const fs = require('fs');
+test('Should create a CSV file', () => {
 	const data = [
 		{
 			name: 'Zoldyck',
@@ -37,6 +37,5 @@ test('Test', () => {
 
 	expect(file).toMatch(expected)
 });
-
 
 export { }
