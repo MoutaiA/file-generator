@@ -1,25 +1,28 @@
 const { writeFileSync } = require('../index');
 import * as fs from 'fs-extra';
 import { Options } from '../src/Options';
+import { Data } from '../src/Data';
 
 test('Should create a CSV file', () => {
-	const data = [
-		{
-			name: 'Zoldyck',
-			firstname: 'Kirua',
-			nenType: 'Transmutation'
-		},
-		{
-			name: 'Freecs',
-			firstname: 'Gon',
-			nenType: 'Enhancer'
-		},
-		{
-			name: 'Kuruta',
-			firstname: 'Kurapika',
-			nenType: 'Conjurer'
-		}
-	];
+	const data: Data = {
+		rawData: [
+			{
+				name: 'Zoldyck',
+				firstname: 'Kirua',
+				nenType: 'Transmutation'
+			},
+			{
+				name: 'Freecs',
+				firstname: 'Gon',
+				nenType: 'Enhancer'
+			},
+			{
+				name: 'Kuruta',
+				firstname: 'Kurapika',
+				nenType: 'Conjurer'
+			}
+		]
+	};
 	const date = new Date();
 	const timestamp = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
 	const path = `dist/`;
@@ -39,24 +42,26 @@ test('Should create a CSV file', () => {
 });
 
 test('Should add a header', () => {
-	const data = [
-		['name', 'firstname', 'nenType'],
-		{
-			name: 'Isaac',
-			firstname: 'Netero',
-			nenTyle: 'Enhancer'
-		},
-		{
-			name: 'Lucifer',
-			firstname: 'Chrollo',
-			nenType: 'Specialization'
-		},
-		{
-			name: 'Morow',
-			firstname: 'Hisoka',
-			nenType: 'Transmuter'
-		}
-	];
+	const data = {
+		header: ['name', 'firstname', 'nenType'],
+		rawData: [
+			{
+				name: 'Isaac',
+				firstname: 'Netero',
+				nenTyle: 'Enhancer'
+			},
+			{
+				name: 'Lucifer',
+				firstname: 'Chrollo',
+				nenType: 'Specialization'
+			},
+			{
+				name: 'Morow',
+				firstname: 'Hisoka',
+				nenType: 'Transmuter'
+			}
+		]
+	};
 	const date = new Date();
 	const timestamp = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
 	const path = `dist/`;
