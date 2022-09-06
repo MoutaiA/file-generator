@@ -1,3 +1,3 @@
-import BuildCSV from './src/BuildCSV';
+import WriteFile from './src/WriteFile';
 
-export { BuildCSV };
+export { WriteFile };

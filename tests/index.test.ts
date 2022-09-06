@@ -1,9 +1,7 @@
-const { BuildCSV } = require('../index');
 import * as fs from 'fs-extra';
+import { WriteFile } from '../index';
 import { Options } from '../src/Options';
 import { Data } from '../src/Data';
-
-// TODO: Fix bug on tests
 
 test('Should create a CSV file', () => {
 	const data: Data = {
@@ -35,12 +33,10 @@ test('Should create a CSV file', () => {
 		filename,
 		extension: 'csv',
 	};
-	const expected =
-		'';
-		// 'Zoldyck;Kirua;Transmutation;\nFreecs;Gon;Enhancer;\nKuruta;Kurapika;Conjurer';
-	const builder = new BuildCSV(data, options);
+	const expected = '';
+	// 'Zoldyck;Kirua;Transmutation;\nFreecs;Gon;Enhancer;\nKuruta;Kurapika;Conjurer';
 
-	builder.build();
+	new WriteFile().csv(data, options);
 	const filepath: string = `${path}/${filename}`;
 	const file = fs.readFileSync(filepath, { encoding: 'utf-8' });
 
@@ -81,9 +77,8 @@ test('Should add a header', () => {
 	};
 	const expected =
 		'name,firstname,nenType,\nIsaac,Netero,Enhancer,\nLucifer,Chrollo,Specialization,\nMorow,Hisoka,Transmuter,';
-	const builder = new BuildCSV(data, options);
 
-	builder.build();
+	new WriteFile().csv(data, options);
 	const filepath: string = `${path}/${filename}`;
 	const file = fs.readFileSync(filepath, { encoding: 'utf-8' });
 
