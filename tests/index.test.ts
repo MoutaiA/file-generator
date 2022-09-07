@@ -25,7 +25,7 @@ test('Should create a CSV file', () => {
 	};
 	const date = new Date();
 	const timestamp = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
-	const path = `dist/`;
+	const path = `dist`;
 	const filename: string = `TEST_${timestamp}.csv`;
 	const options: Options = {
 		separator: ';',
@@ -33,12 +33,13 @@ test('Should create a CSV file', () => {
 		filename,
 		extension: 'csv',
 	};
-	const expected = '';
-	// 'Zoldyck;Kirua;Transmutation;\nFreecs;Gon;Enhancer;\nKuruta;Kurapika;Conjurer';
+	const expected = 'Zoldyck;Kirua;Transmutation;\nFreecs;Gon;Enhancer;\nKuruta;Kurapika;Conjurer;';
 
 	new WriteFile().csv(data, options);
 	const filepath: string = `${path}/${filename}`;
 	const file = fs.readFileSync(filepath, { encoding: 'utf-8' });
+	console.log('filepath', filepath);
+	console.log('file', file);
 
 	expect(file).toMatch(expected);
 });
